@@ -1,10 +1,13 @@
 from app.models import Item
 from app.BO.productBO import ItemBO
+from app.serializers import ItemSerializer
+import json
 
 
 def addProduct(data):
     data.save() 
-    return
+    msg = json.loads({data : "Item added"})
+    return msg
 
 def updateProduct(id, data):
     Item.objects.filter(id=id).update(

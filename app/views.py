@@ -7,6 +7,7 @@ from app.services.product_creation import callAddProduct
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ItemSerializer
+from django.http import HttpResponse
 
 class itemList(APIView):
 
@@ -26,8 +27,8 @@ class addItem(APIView):
         form = ItemForm(request.POST)  
         if form.is_valid():  
             try:  
-                callAddProduct(form) 
-                return Response({'message' : 'item added'})
+                msg = callAddProduct(form) 
+                return Response(msg.data)
             except:  
                 return Response("error occured")
 

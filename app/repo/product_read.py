@@ -3,7 +3,7 @@ from app.BO.productBO import ItemBO
 from app.serializers import ItemSerializer
 
 def allProducts():
-    items = Item.objects.filter(active = False)
+    items = Item.objects.all()
     serialised = ItemSerializer(items, many = True)
     return serialised.data
 
