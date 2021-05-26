@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specific Product</title>
+</head>
+<body>
+    <h1>About Product</h1>
+    Name : {{item.product_name}}<br>
+    Other Names : {{item.extra_name}}<br>
+    Packaging Info : {{item.packaging_info}}<br>
+    Created on : {{item.created_on}}<br>
+    Updated on : {{item.updated_on}}<br>
+    <button><a href="/edit-product/{{item.id}}">Edit Product</a></button>
+    <br>
+    <button><a href="/delete-product/{{item.id}}">Delete Product</a></button>
+</body>
+</html>

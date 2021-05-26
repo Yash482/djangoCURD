@@ -1,0 +1,40 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Update Product</title>  
+    
+</head>  
+<body>  
+<form method="POST" action="/update-product/{{item.id}}">  
+        {% csrf_token %}  
+    <h3>Update Details</h3>  
+    Name: 
+    <input type="text" name="product_name"  value="{{item.product_name }}"/>  <br>
+
+    Extra Names: 
+    <input type="text" name="extra_name"  value="{{item.extra_name }}"/>  <br>
+
+    Weigh: 
+    <input type="text" name="weight_info"  value="{{item.weight_info}}"/>  <br>
+
+    Packaging Info: 
+    <input type="text" name="packaging_info"  value="{{item.packaging_info}}"/>  <br>
+
+    Packaging Type: 
+    <input type="text" name="packaging_type"  value="{{item.packaging_type }}"/>  <br>
+
+    Expired Date: 
+    <input type="text" name="expired_on"  value="{{item.expired_on }}"/>  <br>
+
+    Freezing Required: 
+    <input type="text" name="is_frozen"  value="{{item.is_frozen }}"/>  <br>
+
+     
+     
+    <button type="submit">Update</button>  
+   
+</form>  
+</body>  
+</html>  
+

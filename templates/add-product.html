@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+    <form method="POST" action= "/add-product">  
+        {% csrf_token %}  
+    
+    <h3>Enter Product Details</h3>  <br>
+    Name: {{form.product_name}} <br>
+    Extra Names: {{form.extra_name}} <br>
+    Weigh: {{form.weight_info}} <br>
+    Packaging Info: {{form.packaging_info}}<br>
+    Packaging Type: {{form.packaging_type}} <br>
+    Expired Date: {{form.expired_on}} <br>
+    Freezing Required: {{form.is_frozen}} <br>
+    
+    
+    <button type="submit">Submit</button>  
+    
+</form>
+</body>
+</html>
