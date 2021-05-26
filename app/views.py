@@ -11,16 +11,14 @@ from .serializers import ItemSerializer
 class itemList(APIView):
 
     def get(self, request):
-        items = Item.objects.all()
-        serialised = ItemSerializer(items, many = True)
-        return Response(serialised.data)
+        itemsList = getAllProducts()
+        return Response(itemsList)
 
 class item(APIView):
 
     def get(self, request, id):
-        items = Item.objects.get(id= id)
-        serialised = ItemSerializer(items, many = False)
-        return Response(serialised.data)
+        item = getProductById(id)
+        return Response(item)
 
 class addItem(APIView):
 
@@ -29,8 +27,7 @@ class addItem(APIView):
         if form.is_valid():  
             try:  
                 callAddProduct(form) 
-                serialised = ItemSerializer(request.POST, many = False)
-                return Response(serialised.data)
+                return Response({'message' : 'item added'})
             except:  
                 return Response("error occured")
 

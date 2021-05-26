@@ -1,15 +1,16 @@
 from app.models import Item
 from app.BO.productBO import ItemBO
+from app.serializers import ItemSerializer
 
 def allProducts():
-    items = Item.objects.filter(active = False).values
-    itemsList = [copyProduct(obj) for obj in items]  
-    return itemsList
+    items = Item.objects.filter(active = False)
+    serialised = ItemSerializer(items, many = True)
+    return serialised.data
 
 def oneProduct(id):
-    item = Item.objects.get(id=id)
-    itemList = [copyProduct(obj) for obj in item]
-    return itemList[0]
+    item = Item.objects.get(id= id)
+    serialised = ItemSerializer(item, many = False)
+    return serialised.data
 
 def copyProduct(data):
     #print(data)
