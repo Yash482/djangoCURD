@@ -31,7 +31,7 @@ class addItem(APIView):
 
 class updateItem(APIView):
 
-    def post(self, request, id):
+    def put(self, request, id):
         newItem = callUpdateProduct(request.data)
         return Response(newItem)
 
