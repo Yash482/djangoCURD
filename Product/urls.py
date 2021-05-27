@@ -21,7 +21,6 @@ urlpatterns = [
     path('', include('app.urls')),
     path('add-product', include('app.urls')),
     path('product/<int:id>', include('app.urls')),
-    path('edit-product/<int:id>', include('app.urls')),
     path('update-product<int:id>', include('app.urls')),
     path('delete-product/<int:id>', include('app.urls')),
     path('admin/', admin.site.urls),

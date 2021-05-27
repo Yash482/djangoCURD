@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from rest_framework import serializers
 from app.forms import ItemForm 
 from app.models import Item
 from app.services.product_retrive import getAllProducts, getProductById
@@ -8,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ItemSerializer
 from django.http import HttpResponse
+from rest_framework import status
 
 class itemList(APIView):
 
@@ -24,46 +26,20 @@ class item(APIView):
 class addItem(APIView):
 
     def post(self, request):
-        form = ItemForm(request.POST)  
-        if form.is_valid():  
-            try:  
-                msg = callAddProduct(form) 
-                return Response(msg.data)
-            except:  
-                return Response("error occured")
+        newItem = callAddProduct(request.data)
+        return Response(newItem)
 
-# def home(request):
-#     itemsList = getAllProducts() 
-#     return render(request, 'home.html', {'items' : itemsList})
+class updateItem(APIView):
 
-def addProduct(request):  
-    if request.method == "POST":  
-        form = ItemForm(request.POST)  
-        if form.is_valid():  
-            try:  
-                callAddProduct(form) 
-                return redirect('/')  
-            except:  
-                pass  
-    else:  
-        form = ItemForm()  
-    return render(request,'add-product.html',{'form':form})  
+    def post(self, request, id):
+        newItem = callUpdateProduct(request.data)
+        return Response(newItem)
 
-# def getOneProduct(request, id):
-#     item = getProductById(id)
-#     return render(request, 'showItem.html', {'item' : item})
+class deleteItem(APIView):
 
-def deleteProduct(request, id):  
-    removeProduct(id)
-    return redirect("/")  
-
-def editProduct(request, id):  
-    item = getProductById(id)
-    return render(request,'edit-product.html',{ 'item': item})  
-
-def updateProduct(request, id):  
-    callUpdateProduct(id, request.POST)              
-    return redirect("/")  
+    def delete(self, request, id):
+        removeProduct(id)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
